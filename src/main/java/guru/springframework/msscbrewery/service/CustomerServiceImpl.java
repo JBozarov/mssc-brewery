@@ -21,4 +21,9 @@ public class CustomerServiceImpl implements CustomerService{
                 .id(UUID.randomUUID())
                 .build();
     }
+
+    @Override
+    public void updateCustomer(UUID customerId, CustomerDto customerDto) {
+        return;
+    }
 }
