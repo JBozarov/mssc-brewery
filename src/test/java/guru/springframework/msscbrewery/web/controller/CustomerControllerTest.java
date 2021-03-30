@@ -1,6 +1,5 @@
 package guru.springframework.msscbrewery.web.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import guru.springframework.msscbrewery.service.CustomerService;
 import guru.springframework.msscbrewery.web.model.CustomerDto;
@@ -89,6 +88,12 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void deleteCustomer() {
+    public void deleteCustomer() throws Exception {
+        CustomerDto customerDto = validCustomerDto;
+        String randomId = UUID.randomUUID().toString();
+        mockMvc.perform(delete("/api/v1/customer/" + randomId)
+                .param("id", randomId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
